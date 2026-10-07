@@ -65,7 +65,7 @@ export async function GET(request: Request) {
     const pdfBytes = await pdfDoc.save()
 
     // Return the PDF as a download
-    return new NextResponse(pdfBytes, {
+    return new NextResponse(Buffer.from(pdfBytes), {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": "attachment; filename=Anurag_Rawat_Resume.pdf",

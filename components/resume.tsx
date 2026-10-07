@@ -2,85 +2,10 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Download, FileText, CheckCircle2, Loader2 } from "lucide-react"
+import { Download, FileText, CheckCircle2 } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
 
 export function Resume() {
-  const [isDownloading, setIsDownloading] = useState(false)
-
-  const handleDownload = async () => {
-    setIsDownloading(true)
-    try {
-      // Dynamically import pdf-lib
-      const { PDFDocument } = await import("pdf-lib")
-
-      // Fetch both resume images
-      const [image1Response, image2Response] = await Promise.all([
-        fetch("/images/resume-page-1.jpg"),
-        fetch("/images/resume-page-2.jpg"),
-      ])
-
-      const [image1Buffer, image2Buffer] = await Promise.all([
-        image1Response.arrayBuffer(),
-        image2Response.arrayBuffer(),
-      ])
-
-      // Create a new PDF document
-      const pdfDoc = await PDFDocument.create()
-
-      // Embed both images
-      const jpgImage1 = await pdfDoc.embedJpg(new Uint8Array(image1Buffer))
-      const jpgImage2 = await pdfDoc.embedJpg(new Uint8Array(image2Buffer))
-
-      // A4 size in points (595 x 842)
-      const pageWidth = 595
-      const pageHeight = 842
-
-      // Add first page with first image
-      const page1 = pdfDoc.addPage([pageWidth, pageHeight])
-      const scale1 = Math.min(pageWidth / jpgImage1.width, pageHeight / jpgImage1.height)
-      const scaledWidth1 = jpgImage1.width * scale1
-      const scaledHeight1 = jpgImage1.height * scale1
-      page1.drawImage(jpgImage1, {
-        x: (pageWidth - scaledWidth1) / 2,
-        y: (pageHeight - scaledHeight1) / 2,
-        width: scaledWidth1,
-        height: scaledHeight1,
-      })
-
-      // Add second page with second image
-      const page2 = pdfDoc.addPage([pageWidth, pageHeight])
-      const scale2 = Math.min(pageWidth / jpgImage2.width, pageHeight / jpgImage2.height)
-      const scaledWidth2 = jpgImage2.width * scale2
-      const scaledHeight2 = jpgImage2.height * scale2
-      page2.drawImage(jpgImage2, {
-        x: (pageWidth - scaledWidth2) / 2,
-        y: (pageHeight - scaledHeight2) / 2,
-        width: scaledWidth2,
-        height: scaledHeight2,
-      })
-
-      // Serialize the PDF to bytes
-      const pdfBytes = await pdfDoc.save()
-
-      // Create blob and download
-      const blob = new Blob([pdfBytes], { type: "application/pdf" })
-      const url = URL.createObjectURL(blob)
-      const link = document.createElement("a")
-      link.href = url
-      link.download = "Anurag_Rawat_Resume.pdf"
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      URL.revokeObjectURL(url)
-    } catch (error) {
-      console.error("Error generating PDF:", error)
-      alert("Failed to download resume. Please try again.")
-    } finally {
-      setIsDownloading(false)
-    }
-  }
 
   return (
     <section id="resume" className="py-32 bg-gradient-to-b from-[#f8f6f0] to-white relative overflow-hidden">
@@ -100,21 +25,21 @@ export function Resume() {
             <Button
               size="lg"
               className="bg-[#c9a227] hover:bg-[#b8922a] text-[#0a1628] font-semibold shadow-xl hover:shadow-2xl transition-all px-8 py-6 text-lg rounded-xl"
-              onClick={handleDownload}
-              disabled={isDownloading}
+              asChild
             >
-              {isDownloading ? (
-                <>
-                  <Loader2 className="mr-3 h-6 w-6 animate-spin" />
-                  Generating PDF...
-                </>
-              ) : (
-                <>
-                  <Download className="mr-3 h-6 w-6" />
-                  Download Resume PDF
-                </>
-              )}
+              <a href="/Anurag_Rawat_Resume.pdf" download="Anurag_Rawat_Resume.pdf">
+                <Download className="mr-3 h-6 w-6" />
+                Download Resume PDF
+              </a>
             </Button>
+          </div>
+
+          <div className="mb-16 rounded-2xl border-2 border-[#c9a227]/30 bg-white p-3 shadow-2xl">
+            <iframe
+              src="/Anurag_Rawat_Resume.pdf#view=FitH"
+              title="Anurag Rawat resume"
+              className="h-[720px] w-full rounded-xl"
+            />
           </div>
 
           {/* Project Photos Gallery */}
