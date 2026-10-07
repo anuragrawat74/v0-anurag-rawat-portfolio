@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Download, FileText, CheckCircle2 } from "lucide-react"
+import { Download, FileText } from "lucide-react"
 import Image from "next/image"
 
 export function Resume() {
