@@ -2,7 +2,8 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Download, FileText } from "lucide-react"
+import Download from "lucide-react/dist/esm/icons/download"
+import FileText from "lucide-react/dist/esm/icons/file-text"
 import Image from "next/image"
 
 export function Resume() {
