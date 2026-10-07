@@ -74,14 +74,14 @@ export function Resume() {
           </div>
 
           {/* Resume Pages */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <Card className="border-2 border-[#c9a227]/30 shadow-2xl overflow-hidden bg-white hover:shadow-3xl transition-all duration-500">
               <div className="relative bg-gradient-to-br from-[#f8f6f0] to-white p-6">
                 <Image
                   src="/images/resume-page-1.jpg"
-                  alt="Anurag Rawat - Resume Page 1"
-                  width={800}
-                  height={1100}
+                  alt="Anurag Rawat resume"
+                  width={1200}
+                  height={1600}
                   className="w-full h-auto rounded-lg shadow-lg"
                   priority
                 />
@@ -89,32 +89,8 @@ export function Resume() {
               <CardContent className="p-6 bg-gradient-to-br from-[#f8f6f0] to-white border-t-4 border-[#c9a227]">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-lg font-bold text-[#0a1628] mb-1">Page 1</p>
-                    <p className="text-sm text-slate-600">Profile, Education, Skills & Projects</p>
-                  </div>
-                  <div className="w-10 h-10 rounded-xl bg-[#c9a227] flex items-center justify-center">
-                    <CheckCircle2 className="h-5 w-5 text-[#0a1628]" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-[#c9a227]/30 shadow-2xl overflow-hidden bg-white hover:shadow-3xl transition-all duration-500">
-              <div className="relative bg-gradient-to-br from-[#f8f6f0] to-white p-6">
-                <Image
-                  src="/images/resume-page-2.jpg"
-                  alt="Anurag Rawat - Resume Page 2"
-                  width={800}
-                  height={1100}
-                  className="w-full h-auto rounded-lg shadow-lg"
-                  priority
-                />
-              </div>
-              <CardContent className="p-6 bg-gradient-to-br from-[#f8f6f0] to-white border-t-4 border-[#c9a227]">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-lg font-bold text-[#0a1628] mb-1">Page 2</p>
-                    <p className="text-sm text-slate-600">Languages & Additional Information</p>
+                    <p className="text-lg font-bold text-[#0a1628] mb-1">Updated Resume</p>
+                    <p className="text-sm text-slate-600">Profile, education, skills, projects and interests</p>
                   </div>
                   <div className="w-10 h-10 rounded-xl bg-[#c9a227] flex items-center justify-center">
                     <CheckCircle2 className="h-5 w-5 text-[#0a1628]" />
